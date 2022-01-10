@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="jspsych/jspsych.js"></script>      
+        <script src="jspsych/plugins/jspsych-html-keyboard-response.js"></script>
+        <script src="jspsych/plugins/jspsych-image-button-response.js"></script>
+        <link href="jspsych/css/jspsych.css" rel="stylesheet">
+    </head>
+    <body></body>
+    <script>
+
+        var timeline = [];
+
+        var words = ['I', 'dont', 'know', 'why', 'I', 'am', 'doing', 'this'];
+
+        for(var i = 0; i<words.length; i++){
+            var welcome_trial1 = {
+                type: 'html-keyboard-response',
+                stimulus: words[i]
+            }
+            timeline.push(welcome_trial1)
+        }
+
+        var welcome_trial = {
+            type: 'html-keyboard-response',
+            stimulus: 'Welcome to my experiment.'
+        }
+        timeline.push(welcome_trial)
+
+        var image_button_trial = {
+            type: 'image-button-response', 
+            stimulus: 'jspsych/examples/img/happy_face_1.jpg',
+            choices: ['Happy', 'Sad']
+        }
+
+        timeline.push(image_button_trial)
+
+        jsPsych.init({
+            timeline: timeline,
+            on_finish: function(){
+                jsPsych.data.displayData();
+            }
+        })
+
+    </script>
+</html>
